@@ -40,7 +40,7 @@ app.post("/api/v1/discussions", (req, res) => {
 
 });
 
-// Write PUT endpoint for Updating discussions
+// Write PATCH endpoint for Updating discussions
 
 /*
 
@@ -51,8 +51,8 @@ req.body = {
       "creator_id": "kkdkdk"
     }
 
-1. id will be given in api.
-2. and all the field that need to be updated will be given in req body.
+1. id will be given in api params.
+2. and all the field that need to be updated will be given in req body, Not necessary all.
 3. you need to update the field for given id.
 
 
@@ -77,32 +77,8 @@ json = {
 
 app.patch("/api/v1/discussions/:id", (req, res) => {
 
-  const id = req.params.id * 1;
-  const updatedDetails = discussions.find(
-    (updatedDetails) => updatedDetails.id === id
-  );
+  //Write your code here.
 
-  const index = discussions.indexOf(updatedDetails);
-
-  if (!updatedDetails) {
-    return res.status(404).send({
-      status: "Failed",
-      message: "Discussion not found!",
-    });
-  }
-
-  Object.assign(updatedDetails, req.body);
-
-  fs.writeFile(
-    `data/discussions.json`,
-    JSON.stringify(discussions),
-    (err) => {
-      res.status(200).json({
-        status: "Success",
-        message: `Discussions Updated Successfully`
-      });
-    }
-  );
 });
 
 module.exports = app;
